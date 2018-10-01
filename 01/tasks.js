@@ -32,6 +32,8 @@ function fibonacciSimple(x) {
 
 /* ============================================= */
 
+const cache = [0, 1]; // глобальная переменная, которая выполняет роль кэша.
+
 /**
  * Напишите функцию для вычисления числа Фибоначчи с мемоизацией:
  * при повторных вызовах функция не вычисляет значения, а достает из кеша.
@@ -39,7 +41,11 @@ function fibonacciSimple(x) {
  * @return {number} число под номером х
  */
 function fibonacciWithCache(x) {
-  return x;
+    if (x <= 0) return 0;
+    if (!cache[x]) {
+        cache[x] = fibonacciWithCache(x - 2) + fibonacciWithCache(x - 1);
+    }
+    return cache[x];
 }
 
 /* ============================================= */
