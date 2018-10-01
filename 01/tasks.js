@@ -113,11 +113,11 @@ function rle(input) {
 }
 
 module.exports = {
-  getMinMax,
-  rle,
-  printNumbers,
-  fibonacciSimple,
-  fibonacciWithCache
+    getMinMax,
+    rle,
+    printNumbers,
+    fibonacciSimple,
+    fibonacciWithCache
 };
 
 /*=====  End of РЕЛИЗ  ======*/
