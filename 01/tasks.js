@@ -65,7 +65,26 @@ function fibonacciWithCache(x) {
  * @param  {number} cols количество столбцов
  * @return {string}
  */
-function printNumbers(max, cols) {}
+function printNumbers(max, cols) {
+    const rows = Math.ceil((max + 1) / cols);
+    let result = '';
+    for (let row_i = 0; row_i < rows; row_i++) {
+        for (let col_i = 0; col_i < cols; col_i++) {
+            const number = col_i * rows + row_i;
+
+            // Вставляем число в строку только если оно не превышает максимальное.
+            // Пустые ячейки пробелами не заполняем.
+            if (number <= max) {
+                if (col_i !== 0) result += ' ';
+                result += (number < 10) ? ` ${number}` : `${number}`;
+                if (col_i === cols - 1 && number !== max) result += '\n';
+            } else if (row_i + 1 < rows) {
+                result += '\n';
+            }
+        }
+    }
+    return result;
+}
 
 /* ============================================= */
 
