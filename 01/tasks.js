@@ -90,10 +90,27 @@ function printNumbers(max, cols) {
 
 /**
  * Реализуйте RLE-сжатие: AAAB -> A3B, BCCDDDEEEE -> BC2D3E4
- * @param  {string} value
+ * @param  {string} input входная строка
  * @return {string}
  */
-function rle(input) {}
+function rle(input) {
+    let result = '';
+    let count = 1;
+    let prev_ch = '';
+    let cur_ch = '';
+    for (let i = 0; i < input.length; i++) {
+        cur_ch = input[i];
+        if (cur_ch === prev_ch) {
+            count++;
+        } else {
+            result += `${prev_ch}${count === 1 ? '' : count}`;
+            prev_ch = cur_ch;
+            count = 1;
+        }
+    }
+    result += `${prev_ch}${count === 1 ? '' : count}`;
+    return result
+}
 
 module.exports = {
   getMinMax,
