@@ -77,10 +77,8 @@ function printNumbers(max, cols) {
             if (number <= max) {
                 if (col_i !== 0) result += ' ';
                 result += (number < 10) ? ` ${number}` : `${number}`;
-                if (col_i === cols - 1 && number !== max) result += '\n';
-            } else if (row_i + 1 < rows) {
-                result += '\n';
             }
+            if (col_i === cols - 1 && row_i !== rows-1) result += '\n';
         }
     }
     return result;
