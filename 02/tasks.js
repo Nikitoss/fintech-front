@@ -14,6 +14,24 @@ function timer(logger = console.log) {
   }
 }
 
+function timer_1(logger = console.log) {
+  for (let i = 0; i < 10; i++) {
+    const j = i;
+
+    setTimeout(() => {
+      logger(j);
+    }, 100);
+  }
+}
+
+function timer_2(logger = console.log) {
+  for (let i = 0; i < 10; i++) {
+    setTimeout(j => {
+      logger(j);
+    }, 100, i);
+  }
+}
+
 /*= ============================================ */
 
 /**
@@ -73,7 +91,9 @@ function anagram(first, second) {
   }
 
   for (let i = 0; i < second.length; i++) {
-    const index = findFirst(second[i]);
+    //const index = findFirst(second[i]);
+
+  const index = first.indexOf(second[i]);
 
     if (index >= 0) {
       first[index] = null;
@@ -90,11 +110,20 @@ function anagram(first, second) {
 /**
  * Сократите массив до набора уникальных значений
  * [1,1, 2, 6, 3, 6, 2] → [1, 2, 3, 6]
- * @param {Array<number>} исходный массив
+ * @param {Array<number>} arr исходный массив
  * @return {Array<number>} массив уникальных значений, отсортированный по возрастанию
  */
 function getUnique(arr) {
-  return [];
+  const sorted = arr.sort();
+  let last;
+
+  return sorted.filter(element => {
+    if (last !== element) {
+      last = element;
+      return true;
+    }
+    return false;
+  });
 }
 
 /**

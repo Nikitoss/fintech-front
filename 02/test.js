@@ -9,7 +9,7 @@ describe('Lesson 2', () => {
 
       timer(logger);
       setTimeout(() => {
-        expect(result).to.eql(new Array(10).fill(10).map((_, i)=> i));
+        expect(result).to.eql(new Array(10).fill(10).map((_, i) => i));
         done();
       }, 1000);
     });
@@ -26,7 +26,7 @@ describe('Lesson 2', () => {
         lastParams = params;
       }
 
-      let bindedFunc = customBind(call, context, 1, 3);
+      const bindedFunc = customBind(call, context, 1, 3);
 
       bindedFunc(4);
       expect(lastContext).to.eql(context);
@@ -43,7 +43,7 @@ describe('Lesson 2', () => {
         lastParams = params;
       }
 
-      let bindedFunc = customBind(call, context, 'hello', 'work');
+      const bindedFunc = customBind(call, context, 'hello', 'work');
 
       bindedFunc(777);
       expect(lastContext).to.be(context);
@@ -77,7 +77,7 @@ describe('Lesson 2', () => {
 
   describe('getIntersection', () => {
     it('should return sorted intersection of arrays', () => {
-      expect(getIntersection([1, 5, 7, 9, 3,], [1, 2, 3, 4])).to.eql([1, 3]);
+      expect(getIntersection([1, 5, 7, 9, 3], [1, 2, 3, 4])).to.eql([1, 3]);
       expect(getIntersection([1, 9, 10, 3, 5, 7], [10, 3, 4])).to.eql([3, 10]);
     });
   });
