@@ -7,7 +7,7 @@
  * Доп. задание: предложите несколько вариантов решения.
  */
 function timer(logger = console.log) {
-  for (var i = 0; i < 10; i++) {
+  for (let i = 0; i < 10; i++) {
     setTimeout(() => {
       logger(i);
     }, 100);
@@ -24,7 +24,7 @@ function timer(logger = console.log) {
  * @return {Function} функция с нужным контекстом
  */
 function customBind(func, context, ...args) {
-
+  return (...nextArgs) => func.apply(context, args.concat(nextArgs));
 }
 
 /*= ============================================ */
@@ -37,7 +37,17 @@ function customBind(func, context, ...args) {
  * sum :: void -> Number
  */
 function sum(x) {
-  return 0;
+  let fullSum = x || 0;
+
+  function closureSum(y) {
+    if (y || y === 0) {
+      fullSum += y;
+      return closureSum;
+    }
+    return fullSum;
+  }
+
+  return (x || x === 0) ? closureSum : fullSum;
 }
 
 /*= ============================================ */
@@ -49,7 +59,30 @@ function sum(x) {
  * @return {boolean}
  */
 function anagram(first, second) {
-  return false;
+  function findFirst(ch) {
+    for (let i = 0; i < first.length; i++) {
+      if (first[i] === ch) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+  if (first.length !== second.length) {
+    return false;
+  }
+
+  for (let i = 0; i < second.length; i++) {
+    const index = findFirst(second[i]);
+
+    if (index >= 0) {
+      first[index] = null;
+    } else {
+      return false;
+    }
+  }
+
+  return true;
 }
 
 /*= ============================================ */
