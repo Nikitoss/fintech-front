@@ -62,6 +62,8 @@ describe('Lesson 2', () => {
   describe('anagram', () => {
     it('should check are words anagrams of each other', () => {
       expect(anagram('просветитель', 'терпеливость')).to.be.ok();
+      expect(anagram('лесопромышленность', 'солепромышленность')).to.be.ok();
+      expect(anagram('внимание', 'Вениамин')).not.to.be.ok();
       expect(anagram('первый', 'терпеливость')).not.to.be.ok();
     });
   });
