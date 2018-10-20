@@ -6,7 +6,32 @@
  * @return {Promise}
  */
 function promiseAll(promises) {
-  return Promise.resolve(null);
+  return new Promise((resolve, reject) => {
+    const result = [];
+
+    for (let i = 0; i < promises.length; i++) {
+      result[i] = {
+        isResolved: false,
+        value: null
+      };
+    }
+
+    for (let i = 0; i < promises.length; i++) {
+      const currentPromise = promises[i];
+
+      currentPromise.then(value => {
+        result[i] = {
+          value,
+          resolved: true
+        };
+
+        if (result.every(element => element.resolved)) {
+          resolve(result.map(element => element.value));
+        }
+      }, reject);
+    }
+  }
+  );
 }
 
 module.exports = promiseAll;
